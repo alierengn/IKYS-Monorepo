@@ -1,0 +1,7 @@
+{
+  "name": "IKYSApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

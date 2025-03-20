@@ -1,0 +1,19 @@
+.file-upload {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.file-upload span {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+ion-button[size="small"] {
+  --padding-start: 8px;
+  --padding-end: 8px;
+  font-size: 0.9rem;
+}

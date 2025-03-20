@@ -1,0 +1,174 @@
+/* Filtre Bölümü */
+.filter-section {
+  background-color: #ffffff;
+  padding: 8px;
+  margin: 8px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.filter-col {
+  padding: 3px;
+}
+
+.compact-item {
+  --min-height: 50px;
+  --padding-start: 0;
+  --padding-end: 0;
+  --inner-padding-end: 0;
+  --background: transparent !important;
+  --border-color: transparent !important;
+  --box-shadow: none !important;
+}
+
+.filter-section ion-label {
+  font-size: 0.75rem;
+  color: #333333 !important;
+  font-weight: 600;
+  margin-bottom: 2px;
+  text-transform: uppercase;
+}
+
+.hidden-label {
+  visibility: hidden;
+}
+
+.compact-select,
+.compact-input {
+  --padding-start: 6px;
+  --padding-end: 6px;
+  font-size: 0.8rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  height: 30px;
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  box-shadow: none !important;
+}
+
+.compact-select::part(placeholder),
+.compact-input::part(placeholder) {
+  color: #000000 !important;
+  opacity: 0.6;
+}
+
+.compact-select::part(text) {
+  color: #000000 !important;
+}
+
+.compact-select::part(icon) {
+  color: #000000 !important;
+  opacity: 0.8;
+  width: 12px;
+  height: 12px;
+}
+
+.compact-button {
+  --padding-start: 6px;
+  --padding-end: 6px;
+  --border-radius: 4px;
+  font-size: 0.8rem;
+  height: 30px;
+  color: #000000 !important;
+  --background: #e0e0e0;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+/* Action Sheet Özelleştirme */
+.auto-close-select {
+  /* Cancel butonunu gizle */
+  --ion-action-sheet-cancel-button: none;
+
+  /* Seçeneklerin stilini özelleştir */
+  .action-sheet-button {
+    font-size: 0.9rem;
+    color: #333333;
+  }
+
+  /* Seçili seçeneğin stilini özelleştir */
+  .action-sheet-selected {
+    font-weight: 600;
+    color: #007bff; /* Mavi renk */
+  }
+}
+
+/* Aday Listesi (Kaydırılabilir) */
+.candidate-list {
+  height: calc(100vh - 180px);
+  overflow-y: auto;
+  margin-bottom: 60px;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Aday Kartları */
+.candidate-card {
+  margin: 8px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+}
+
+ion-card-header {
+  background-color: #f7f9fc;
+  border-bottom: 1px solid #dfe3e8;
+  padding: 8px 12px;
+}
+
+ion-card-title {
+  font-size: 0.95rem;
+  font-weight: bold;
+  color: #333;
+}
+
+ion-card-subtitle {
+  font-size: 0.8rem;
+  color: #555;
+}
+
+ion-card-content {
+  padding: 8px 12px;
+  font-size: 0.8rem;
+  color: #444;
+}
+
+ion-card-content p {
+  margin: 2px 0;
+}
+
+/* Butonlar */
+.card-buttons {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+}
+
+.card-buttons ion-button {
+  --border-radius: 4px;
+  font-size: 0.75rem;
+  height: 28px;
+}
+
+/* Yeni Aday Ekle Butonu (Sabit) */
+.fixed-button {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  z-index: 10;
+}
+
+.add-button {
+  --border-radius: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* Genel Arka Plan */
+ion-content {
+  --background: #f4f5f8;
+  --padding-bottom: 80px;
+}

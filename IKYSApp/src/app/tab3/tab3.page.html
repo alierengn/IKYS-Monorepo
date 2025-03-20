@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab1"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Aday Detayları</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngIf="candidate && !isLoading" class="detail-card">
+    <ion-card-header>
+      <ion-card-title>{{ candidate.firstName }} {{ candidate.lastName }}</ion-card-title>
+      <ion-card-subtitle>{{ candidate.position }}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <p><strong>Telefon:</strong> {{ candidate.phone || 'Belirtilmemiş' }}</p>
+      <p><strong>E-posta:</strong> {{ candidate.email || 'Belirtilmemiş' }}</p>
+      <p><strong>Askerlik Durumu:</strong> {{ candidate.militaryStatus || 'Belirtilmemiş' }}</p>
+      <p><strong>Bildirim Süresi:</strong> {{ candidate.noticePeriod || 'Belirtilmemiş' }}</p>
+      <p>
+        <strong>CV:</strong>
+        <span *ngIf="candidate.cvBase64; else noCv">
+          <a (click)="downloadCv()" class="cv-link">CV’yi İndir</a>
+        </span>
+        <ng-template #noCv>
+          Belirtilmemiş
+        </ng-template>
+      </p>
+    </ion-card-content>
+    <div class="action-buttons">
+      <ion-button color="warning" (click)="editCandidate()">Düzenle</ion-button>
+      <ion-button color="danger" (click)="deleteCandidate()">Sil</ion-button>
+    </div>
+  </ion-card>
+
+  <div *ngIf="isLoading" class="loading">
+    <ion-spinner name="crescent"></ion-spinner>
+    <p>Yükleniyor...</p>
+  </div>
+
+  <div *ngIf="!candidate && !isLoading" class="no-data">
+    <p>Aday bulunamadı veya yükleniyor...</p>
+  </div>
+</ion-content>

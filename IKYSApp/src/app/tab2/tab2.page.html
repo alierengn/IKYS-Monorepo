@@ -1,0 +1,163 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ isEditMode ? 'Aday Düzenle' : 'Aday Ekle' }}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab1"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form #candidateForm="ngForm" (ngSubmit)="saveCandidate()" novalidate>
+    <!-- İsim Alanı -->
+    <ion-item>
+      <ion-label position="floating">Ad</ion-label>
+      <ion-input
+        type="text"
+        [(ngModel)]="candidate.firstName"
+        name="firstName"
+        required
+        #firstName="ngModel"
+      ></ion-input>
+    </ion-item>
+    <ion-text color="danger" *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
+      <p *ngIf="firstName.errors?.['required']">Ad alanı zorunludur.</p>
+    </ion-text>
+
+    <!-- Soyad Alanı -->
+    <ion-item>
+      <ion-label position="floating">Soyad</ion-label>
+      <ion-input
+        type="text"
+        [(ngModel)]="candidate.lastName"
+        name="lastName"
+        required
+        #lastName="ngModel"
+      ></ion-input>
+    </ion-item>
+    <ion-text color="danger" *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
+      <p *ngIf="lastName.errors?.['required']">Soyad alanı zorunludur.</p>
+    </ion-text>
+
+    <!-- Pozisyon Alanı -->
+    <ion-item>
+      <ion-label position="floating">Pozisyon</ion-label>
+      <ion-select
+        [(ngModel)]="candidate.position"
+        name="position"
+        >
+          <ion-select-option value="Yazılım Geliştirici">Yazılım Geliştirici</ion-select-option>
+          <ion-select-option value="Proje Menejeri">Proje Menejeri</ion-select-option>
+          <ion-select-option value="İnsan Kaynakları Uzmanı">İnsan Kaynakları Uzmanı</ion-select-option>
+          <ion-select-option value="Veri Bilimci">Veri Bilimci</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+    <!-- Telefon Numarası Alanı -->
+    <ion-item>
+      <ion-label position="floating">Telefon</ion-label>
+      <ion-input
+        type="tel"
+        [(ngModel)]="candidate.phone"
+        name="phone"
+        pattern="^[0-9]{10}$"
+        #phone="ngModel"
+      ></ion-input>
+    </ion-item>
+    <ion-text color="danger" *ngIf="phone.invalid && (phone.dirty || phone.touched)">
+      <p *ngIf="phone.errors?.['pattern']">Telefon numarası 10 haneli bir sayı olmalıdır (örneğin: 5551234567).</p>
+    </ion-text>
+
+    <!-- E-posta Alanı -->
+    <ion-item>
+      <ion-label position="floating">E-posta</ion-label>
+      <ion-input
+        type="email"
+        [(ngModel)]="candidate.email"
+        name="email"
+        email
+        #email="ngModel"
+      ></ion-input>
+    </ion-item>
+    <ion-text color="danger" *ngIf="email.invalid && (email.dirty || email.touched)">
+      <p *ngIf="email.errors?.['email']">Geçerli bir e-posta adresi giriniz (örneğin: ornek&#64;domain.com).</p>
+    </ion-text>
+
+    <!-- Askerlik Durumu Alanı -->
+    <ion-item>
+      <ion-label position="floating">Askerlik Durumu</ion-label>
+      <ion-select
+        [(ngModel)]="candidate.militaryStatus"
+        name="militaryStatus"
+      >
+        <ion-select-option value="Yapıldı">Yapıldı</ion-select-option>
+        <ion-select-option value="Muaf">Muaf</ion-select-option>
+        <ion-select-option value="Tecilli">Tecilli</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <!-- İhbar Süresi Alanı -->
+    <ion-item>
+      <ion-label position="floating">İhbar Süresi</ion-label>
+      <ion-input
+        type="text"
+        [(ngModel)]="candidate.noticePeriod"
+        name="noticePeriod"
+      ></ion-input>
+    </ion-item>
+
+    <!-- Dosya Yükleme Alanı -->
+    <ion-item>
+      <ion-label>Dosya Yükle (PDF veya Word)</ion-label>
+      <input
+        type="file"
+        (change)="onFileSelected($event)"
+        accept=".pdf,.doc,.docx"
+        style="display: none"
+        #fileInput
+      />
+      <ion-button
+        type="button"
+        fill="outline"
+        (click)="fileInput.click()"
+        [disabled]="selectedFileName"
+      >
+        Dosya Seç
+      </ion-button>
+      <ion-button
+        type="button"
+        fill="outline"
+        color="danger"
+        (click)="removeFile()"
+        *ngIf="selectedFileName"
+      >
+        Kaldır
+      </ion-button>
+    </ion-item>
+    <ion-text *ngIf="selectedFileName">
+      Seçilen Dosya: {{ selectedFileName }}
+    </ion-text>
+
+    <!-- Kaydet Butonu -->
+    <ion-button
+      expand="block"
+      type="submit"
+      [disabled]="candidateForm.invalid"
+      class="ion-margin-top"
+    >
+      {{ isEditMode ? 'Güncelle' : 'Kaydet' }}
+    </ion-button>
+  </form>
+
+  <!-- Mevcut CV’yi İndirme Butonu (Düzenleme Modunda) -->
+  <ion-button
+    expand="block"
+    type="button"
+    color="medium"
+    (click)="downloadCv()"
+    *ngIf="isEditMode && candidate.cvBase64"
+    class="ion-margin-top"
+  >
+    Mevcut CV’yi İndir
+  </ion-button>
+</ion-content>
