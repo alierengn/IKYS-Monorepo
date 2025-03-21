@@ -7,7 +7,7 @@
 2-Springboot kısmı (önerilen STS4) ile başlatılmalıdır.
 
 
-3-Frontend VSCode açtıktan sonra sırasıyla alttaki kodlar terminalde çalıştırılmalıdır.
+3-Frontend VSCode açtıktan sonra sırasıyla alttaki kodlar cmd terminalde çalıştırılmalıdır.
 
   -npm install
 
